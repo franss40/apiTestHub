@@ -1,0 +1,15 @@
+### Devolver todos los tests
+
+GET http://localhost:3001/api/tests
+
+### Devolver un sólo test de id 1, junto con todas sus preguntas
+
+GET http://localhost:3001/api/test/1
+
+### Devolver un test inexistente
+
+GET http://localhost:3001/api/test/dss
+
+
+### Devolver todos los tests
+GET http://localhost:3001/api

@@ -1,0 +1,100 @@
+### Recuperar todas los blogs
+GET http://localhost:3003/api/blogs
+
+### Obtener comments
+GET http://localhost:3003/api/blogs/6616e529bf2e5f9512694a1d/comments
+
+### Nuevo comment
+POST http://localhost:3003/api/blogs/6616e529bf2e5f9512694a1d/comments
+Content-Type: application/json
+
+{
+  "comment": "this is OK"
+}
+
+### Añadir un blog
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+  "title": "MongoDB Atlas",
+  "author": "MongoDb",
+  "url": "https://www.mongodb.com/atlas",
+  "likes": 7
+}
+
+### Nuevo registro
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+  "title": "GitHub",
+  "author": "Github",
+  "url": "https://github.com/",
+  "likes": 10
+}
+### Nuevo registro
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+  "title": "full stack open",
+  "author": "Universidad de Helsinki",
+  "url": "https://fullstackopen.com/es/",
+  "likes": 30
+}
+### Nuevo registro
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+  "title": "Programación",
+  "author": "martin fowleer",
+  "url": "https://martinfowler.com/",
+  "likes": 24
+}
+### Nuevo registro
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+  "title": "Programación Joan Leon",
+  "author": "Joan Leon",
+  "url": "https://joanleon.dev/",
+  "likes": 5
+}
+
+### error Nuevo registro, name es requerido
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+  "author": "Joan Leon",
+  "url": "https://joanleon.dev/",
+  "likes": 5
+}
+
+### Recuperar un blog existente
+GET http://localhost:3003/api/blogs/6616e610ab8052b0bcd971ba
+
+### Recuperar un blog con una id erronea
+GET http://localhost:3003/api/blogs/a6
+
+### Recuperar un blog con una id no existente
+GET http://localhost:3003/api/blogs/55f6b518adb1f83ee8cbc016
+
+### borrar un blog con una id
+DELETE  http://localhost:3003/api/blogs/661bb1d57725517f1ebf7fb7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1sdXVra2FpIiwiaWQiOiI2NjEyNmQ0MmYzZmFhYmUyZGUwNzQyYzUiLCJpYXQiOjE3MTMyNTk0OTcsImV4cCI6MTcxMzI2MzA5N30.UnDFYApQ3wlzZJHXGp50u3uEiRnxqlT1yhPHLNkISok
+### actualizar registro
+PUT  http://localhost:3003/api/blogs/6616e529bf2e5f9512694a1d
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1sdXVra2FpIiwiaWQiOiI2NjEyNmQ0MmYzZmFhYmUyZGUwNzQyYzUiLCJpYXQiOjE3MTMyNTk0OTcsImV4cCI6MTcxMzI2MzA5N30.UnDFYApQ3wlzZJHXGp50u3uEiRnxqlT1yhPHLNkISok
+
+{
+  "title": "Programación Joan Leon",
+  "author": "Joan Leon",
+  "url": "https://joanleon.dev/",
+  "likes": 5,
+  "user": "66126d42f3faabe2de0742c5"
+}

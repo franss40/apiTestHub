@@ -1,0 +1,34 @@
+{
+  "name": "testhub-api",
+  "version": "1.0.0",
+  "description": "API de la aplicación testHub",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "ts-node-dev --require tsconfig-paths/register ./src/index.ts",
+    "start": "node dist/index.js",
+    "build": "npx tsc"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "Francisco J. Sanz",
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.11.5"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.10.2",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "eslint": "^9.16.0",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.7.2"
+  }
+}
