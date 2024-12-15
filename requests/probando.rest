@@ -1,15 +1,18 @@
-### Devolver todos los tests
+### Caso de uso I
 
+### Devolver todos los tests junto con el nombre de usuario
 GET http://localhost:3001/api/tests
 
-### Devolver un sólo test de id 1, junto con todas sus preguntas
 
+
+### Caso de uso II
+
+### Devolver las preguntas de un determinado test junto con el nombre de usuario y el nombre del test
+GET http://localhost:3001/api/test/2
+
+### Si el test no existe devuelve un array vacío
 GET http://localhost:3001/api/test/1
 
-### Devolver un test inexistente
+### Si el parámetro es un string devuelve un error 500
+GET http://localhost:3001/api/test/kjkds
 
-GET http://localhost:3001/api/test/dss
-
-
-### Devolver todos los tests
-GET http://localhost:3001/api

@@ -88,7 +88,12 @@ Asimismo se ha creado un par de alias para facilitar las importaciones:
 
 La API está compuesta por las siguientes rutas:
 
-1. /api/tests: Devuelve todos los tests, junto con el nombre de usuario.
+1. `/api/tests`
+  Devuelve todos los tests, junto con el nombre de usuario.
+2. `/api/test/:idTest`
+  Devuelve un test específico, junto con todas sus preguntas y el nombre de usuario.
+  Si no existe el test, devuelve un array vacío.
+  Si el parámetro es un string, devuelve un error 500.
 
 
 ## Licencia

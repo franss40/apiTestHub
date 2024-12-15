@@ -1,10 +1,11 @@
-import conn from '@/src/services/connection'
+import conn from '@src/services/connection'
 
 async function getTests() {
   const connect = await conn()
   return new Promise((resolve, reject) => {
     if (!connect) reject('No se pudo conectar a la base de datos')
-    connect.query('SELECT * FROM test inner join usuario on test.userEmail = usuario.email', (err, rows) => {
+    const sql = 'SELECT test.*, usuario.username FROM test inner join usuario on test.userEmail = usuario.email'
+    connect.query(sql, (err, rows) => {
       if (err)
         reject(err)
       else
