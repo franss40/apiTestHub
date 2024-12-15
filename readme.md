@@ -15,8 +15,8 @@ Para la conexión a la base de datos **MySQL** se utiliza la libreria **MySQL2**
 El archivo de configuración **.env** se encuentra en la raíz del proyecto y contiene las credenciales de la base de datos y el puerto de la aplicación **node**:
 
 - PORT=<tu_puerto>
-- HOST='127.0.0.1'
-- NODE_ENV='development'
+- HOST=127.0.0.1
+- NODE_ENV=development
 - USER=<tu_usuario_mysql>
 - PASSWORD=<tu_contraseña_mysql>
 - DATABASE=<tu_base_de_datos_mysql>
@@ -33,11 +33,11 @@ Para instalar el proyecto en tu máquina local, siga estos pasos:
   npm install
 4. Configura las variables de entorno en el archivo .env:  
   - PORT=<tu_puerto>
-  - HOST='127.0.0.1'
-  - NODE_ENV='development'
-  - USER='<tu_usuario_mysql>'
-  - PASSWORD='<tu_contraseña_mysql>'
-  - DATABASE='<tu_base_de_datos_mysql>'
+  - HOST=127.0.0.1
+  - NODE_ENV=development
+  - USER=<tu_usuario_mysql>
+  - PASSWORD=<tu_contraseña_mysql>
+  - DATABASE=<tu_base_de_datos_mysql>
 
 ## Scripts
 
@@ -83,6 +83,13 @@ Asimismo se ha creado un par de alias para facilitar las importaciones:
 1. TypeScript: Superconjunto de JavaScript con tipado estático.
 2. ESLint: Herramienta para garantizar la calidad del código.
 3.ts-node-dev: Herramienta para ejecutar código TypeScript en desarrollo con recarga rápida.
+
+## Rutas de la API
+
+La API está compuesta por las siguientes rutas:
+
+1. /api/tests: Devuelve todos los tests, junto con el nombre de usuario.
+
 
 ## Licencia
 

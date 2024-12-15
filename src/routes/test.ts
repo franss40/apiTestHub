@@ -1,20 +1,17 @@
-import test from '@/src/services/test'
+import getTests from '@/src/services/test'
 import express from 'express'
 const routerTest = express.Router()
 
 import { dataTest, dataAsk } from '@/datas/entries'
 
-routerTest.get('/', async (_req, res) => {
+// Recupero todos los tests (GET api/tests)
+routerTest.get('/tests', async (_req, res) => {
   try {
-    const salida = await test()
+    const salida = await getTests()
     res.json(salida)
   } catch (error) {
     res.status(500).send({ message: `Error al conectar a la base de datos {${error}}` })
   }
-})
-
-routerTest.get('/tests', (_req, res) => {
-  res.json(dataTest)
 })
 
 routerTest.get('/test/:idTest', (_req, res) => {
