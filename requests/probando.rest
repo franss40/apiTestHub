@@ -16,3 +16,16 @@ GET http://localhost:3001/api/test/1
 ### Si el parámetro es un string devuelve un error 500
 GET http://localhost:3001/api/test/kjkds
 
+
+
+### Caso de uso III
+
+### Crear un nuevo usuario
+POST http://localhost:3001/api/user
+Content-Type: application/json
+
+{
+    "email": "test@test.com",
+    "password": "adA3dg1-",
+    "username": "dsd"
+}
