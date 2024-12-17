@@ -12,30 +12,26 @@ export const errorHandler = (err: Error, _req: Request, res: Response, next: Nex
   let errorMessage
 
   switch (err.message) {
-    case 'T':
+    case 'wrongParam':
       statusCode = 400
       errorMessage = 'El parámetro debe ser un número'
       break
-    case 'UC':
+    case 'invalidData':
       statusCode = 400
-      errorMessage = 'La contraseña debe tener al menos 8 carácteres,\
+      errorMessage = 'No deben de faltar datos y la contraseña debe tener al menos 8 carácteres,\
                      mayúscula, minúsculas, númerico y especial (-_+*@#%&!)'
       break
-    case 'U':
-      statusCode = 400
-      errorMessage = 'Faltan datos para poder crear el usuario'
+    case 'noAccess':
+      statusCode = 401
+      errorMessage = 'Usuario o contraseña incorrecta'
+      break
+    case 'emailExists':
+      statusCode = 401
+      errorMessage = 'Este email ya existe'
       break
     case 'JsonWebTokenError':
       statusCode = 401
       errorMessage = 'token invalid'
-      break
-    case 'CastError':
-      statusCode = 400
-      errorMessage = 'malformatted id'
-      break
-    case 'ValidationError':
-      statusCode = 404
-      errorMessage = err.message
       break
     default:
       statusCode = 500

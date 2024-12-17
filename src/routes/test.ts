@@ -13,7 +13,7 @@ routerTest.get('/tests', async (_req, res) => {
 // y el nombre del test (GET api/test/:idTest)
 routerTest.get('/test/:idTest', async (_req, res) => {
   const idTest = Number(_req.params.idTest)
-  if (isNaN(idTest)) throw new Error('T')
+  if (isNaN(idTest)) throw new Error('wrongParam')
   const asks = await getAsks(idTest)
   res.json(asks)
 })
