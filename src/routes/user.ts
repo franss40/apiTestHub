@@ -2,6 +2,7 @@ import express from 'express'
 const routerUser = express.Router()
 import { validarEmail, validarContraseña } from '@/src/utils/validation'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 import { createUser, getUser } from '@src/services/user'
 
 // Crear un nuevo usuario (POST api/user)
@@ -30,8 +31,11 @@ routerUser.post('/login', async (_req, res) => {
   const isPasswordCorrect = await bcrypt.compare(password, user[0].password)
   if (!isPasswordCorrect) throw new Error('noAccess')
 
-  // FIXME: Si el usuario existe, se devuelve el token de acceso
-  res.json(user[0])
+  process.loadEnvFile()
+  const secret: string = process.env.JWT_SECRET || 'default_secret'
+
+  const token = jwt.sign({ email: user[0].email }, secret, { algorithm: 'HS256', expiresIn: '1h' })
+  res.json({ token })
 })
 
 export default routerUser

@@ -8,12 +8,12 @@ GET http://localhost:3001/api/tests
 ### Caso de uso II
 
 ### Devolver las preguntas de un determinado test junto con el nombre de usuario y el nombre del test
-GET http://localhost:3001/api/test/2
+GET http://localhost:3001/api/test/6
 
 ### Si el test no existe devuelve un array vacío
 GET http://localhost:3001/api/test/1
 
-### Si el parámetro es un string devuelve un error 500
+### Si el parámetro es un string devuelve un error 400
 GET http://localhost:3001/api/test/kjkds
 
 
@@ -25,7 +25,7 @@ POST http://localhost:3001/api/user
 Content-Type: application/json
 
 {
-    "email": "test3@test.com",
+    "email": "test5@test.com",
     "password": "ajA3dg1-",
     "username": "Juan"
 }
