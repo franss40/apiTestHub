@@ -85,6 +85,8 @@ Asimismo se ha creado un par de alias para facilitar las importaciones:
 2. ESLint: Herramienta para garantizar la calidad del código.
 3. ts-node-dev: Herramienta para ejecutar código TypeScript en desarrollo con recarga rápida.
 4. Bcrypt: Funciones para encriptar y desencriptar contraseñas.
+5. Express-rate-limit: Middleware para limitar el número de solicitudes de un usuario.
+6. Jsonwebtoken: Funciones para crear y verificar tokens de autenticación.
 
 ## Rutas de la API
 
