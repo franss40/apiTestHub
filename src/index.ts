@@ -1,8 +1,8 @@
 import app from '@/src/app'
+import { config } from '@src/utils/config'
 
-process.loadEnvFile()
-const { PORT = 3001, HOST = 'http://localhost' } = process.env
+const { port, host } = config
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://${HOST}:${PORT}`)
+app.listen(port, () => {
+  console.log(`Server running on http://${host}:${port}`)
 })

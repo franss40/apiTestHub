@@ -38,6 +38,7 @@ Para instalar el proyecto en tu máquina local, siga estos pasos:
   - USER=<tu_usuario_mysql>
   - PASSWORD=<tu_contraseña_mysql>
   - DATABASE=<tu_base_de_datos_mysql>
+  - JWT_SECRET=<tu_secret_jwt>
 
 ## Scripts
 
@@ -82,19 +83,31 @@ Asimismo se ha creado un par de alias para facilitar las importaciones:
 **Dependencias de desarrollo:**
 1. TypeScript: Superconjunto de JavaScript con tipado estático.
 2. ESLint: Herramienta para garantizar la calidad del código.
-3.ts-node-dev: Herramienta para ejecutar código TypeScript en desarrollo con recarga rápida.
+3. ts-node-dev: Herramienta para ejecutar código TypeScript en desarrollo con recarga rápida.
+4. Bcrypt: Funciones para encriptar y desencriptar contraseñas.
 
 ## Rutas de la API
 
 La API está compuesta por las siguientes rutas:
 
 1. `/api/tests`
-  Devuelve todos los tests, junto con el nombre de usuario.
-2. `/api/test/:idTest`
-  Devuelve un test específico, junto con todas sus preguntas y el nombre de usuario.
-  Si no existe el test, devuelve un array vacío.
-  Si el parámetro es un string, devuelve un error 500.
+    Devuelve todos los tests, junto con el nombre de usuario.
 
+2. `/api/test/:idTest`
+    Devuelve un test específico, junto con todas sus preguntas y el nombre de usuario.
+    Si no existe el test, devuelve un array vacío.
+    Si el parámetro es un string, devuelve un error 400.
+
+3. `/api/user/register`
+    Crea un nuevo usuario.
+    Si los datos son erróneos o el email ya existe, devuelve un error 400.
+    Grabo el usuario con la contraseña encriptada con bcrypt.
+
+4. `/api/user/login`
+    Hace login al usuario.
+    Si los datos enviados son erréneos, devuelve un error 400.
+    Si no tienes acceso, devuelve un error 401.
+    Si te has registrado correctamente, te devuelve un token junto con el email y username.
 
 ## Licencia
 

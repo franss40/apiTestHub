@@ -1,17 +1,17 @@
 import mysql from 'mysql2'
+import { config } from '@src/utils/config'
 
-process.loadEnvFile()
-const { HOST, USER, PASSWORD, DATABASE } = process.env
+const { host, user, password, database } = config
 
-const config = {
-  host: HOST,
-  user: USER,
-  password: PASSWORD,
-  database: DATABASE
+const configConnection = {
+  host: host,
+  user: user,
+  password: password,
+  database: database
 }
 
 const conn = async () => {
-  return await mysql.createConnection(config)
+  return await mysql.createConnection(configConnection)
 }
 
 export default conn 

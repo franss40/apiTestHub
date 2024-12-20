@@ -23,10 +23,10 @@ export const errorHandler = (err: Error, _req: Request, res: Response, next: Nex
       break
     case 'noAccess':
       statusCode = 401
-      errorMessage = 'Usuario o contraseña incorrecta'
+      errorMessage = 'Credenciales inválidas'
       break
     case 'emailExists':
-      statusCode = 401
+      statusCode = 400
       errorMessage = 'Este email ya existe'
       break
     case 'JsonWebTokenError':
