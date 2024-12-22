@@ -1,12 +1,19 @@
 import express from 'express'
-import { validarEmail, validarContraseña } from '@/src/utils/validation'
+import { validarEmail, validarContraseña } from '@src/utils/validation'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { createUser, getUser } from '@src/services/user'
 import { config } from '@src/utils/config'
 import { authToken } from '../middleware/authToken'
+import rateLimit from 'express-rate-limit'
 
 const routerUser = express.Router()
+
+const limiterLogin = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // limit each IP to 100 requests per windowMs
+  message: 'Demasiados intentos de login desde esta IP, por favor intenta de nuevo después de 15 minutos',
+})
 
 // Crear un nuevo usuario (POST api/user/register)
 routerUser.post('/register', async (_req, res) => {
@@ -24,7 +31,7 @@ routerUser.post('/register', async (_req, res) => {
 })
 
 // Hacer login al usuario creado (POST api/user/login)
-routerUser.post('/login', async (_req, res) => {
+routerUser.post('/login', limiterLogin, async (_req, res) => {
   const { email, password } = _req.body as { email: string; password: string }
   if (!validarEmail(email) || !validarContraseña(password)) throw new Error('invalidData')
 

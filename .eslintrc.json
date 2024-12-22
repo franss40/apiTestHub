@@ -50,6 +50,6 @@
     }
   },
   "env": {
-    //"jest": true
+    "jest": true
   }
 }

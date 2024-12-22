@@ -3,17 +3,17 @@ import cors from 'cors'
 import 'express-async-errors'
 import express from 'express'
 import rateLimit from 'express-rate-limit'
-import { unknownEndPoint } from '@/src/middleware/unknownEndPoint'
-import routerTest from '@/src/routes/test'
-import routerUser from '@/src/routes/user'
-import { errorHandler } from '@/src/middleware/errorHandler'
+import { unknownEndPoint } from '@src/middleware/unknownEndPoint'
+import routerTest from '@src/routes/test'
+import routerUser from '@src/routes/user'
+import { errorHandler } from '@src/middleware/errorHandler'
 
 const app = express()
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // limit each IP to 100 requests per windowMs
-  message: 'Too many requests from this IP, please try again after an hour',
+  message: 'Demasiados intentos desde esta IP, por favor intenta de nuevo después de 15 minutos',
 })
 
 app.use(limiter)

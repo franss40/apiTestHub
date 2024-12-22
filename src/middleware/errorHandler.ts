@@ -1,8 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 
-// T = Error en la zona de Test
-// U = Error en la zona de Usuario
-// UC = Error Usuario en contraseña >=8, algún númerico, algún especial (-_+*@#%&!), minúculas y mayúsculas
+// Error Usuario en contraseña >=8, algún númerico, algún especial (-_+*@#%&!), minúculas y mayúsculas
 
 export const errorHandler = (err: Error, _req: Request, res: Response, next: NextFunction) => {
   if (res.headersSent) {

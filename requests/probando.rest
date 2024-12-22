@@ -36,9 +36,9 @@ Content-Type: application/json
 
 {
     "email": "test5@test.com",
-    "password": "ajA3dg1-"
+    "password": "adjA3dg1-"
 }
 
 ###
 GET http://localhost:3001/api/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ikp1YW4iLCJlbWFpbCI6InRlc3Q1QHRlc3QuY29tIiwiaWF0IjoxNzM0NjkyODQ4LCJleHAiOjE3MzQ2OTY0NDh9.QyeBXmqjom7giGx2ZrYXS064wXFu8vyb0I4SkyWbDNY
+Authorization: Bearer ryJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ikp1YW4iLCJlbWFpbCI6InRlc3Q1QHRlc3QuY29tIiwiaWF0IjoxNzM0Njk2MDM3LCJleHAiOjE3MzQ2OTk2Mzd9.RSFvcx11l2ojuZopVz9VY0xzgCLUJCV5xHTEbLIoZ44
