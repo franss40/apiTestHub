@@ -8,13 +8,13 @@ GET http://localhost:3001/api/tests
 ### Caso de uso II
 
 ### Devolver las preguntas de un determinado test junto con el nombre de usuario y el nombre del test
-GET http://localhost:3001/api/test/6
+GET http://localhost:3001/api/ask/6
 
 ### Si el test no existe devuelve un array vacío
-GET http://localhost:3001/api/test/1
+GET http://localhost:3001/api/ask/1
 
 ### Si el parámetro es un string devuelve un error 400
-GET http://localhost:3001/api/test/kjkds
+GET http://localhost:3001/api/ask/kjkds
 
 
 
@@ -27,7 +27,7 @@ Content-Type: application/json
 {
     "email": "test5@test.com",
     "password": "ajA3dg1-",
-    "username": "Juan"
+    "username": "Pedro"
 }
 
 ### Hacer login al usario creado
@@ -35,10 +35,10 @@ POST http://localhost:3001/api/user/login
 Content-Type: application/json
 
 {
-    "email": "test5@test.com",
-    "password": "adjA3dg1-"
+    "email": "test4@test.com",
+    "password": "ajA3dg1-"
 }
 
 ###
 GET http://localhost:3001/api/user
-Authorization: Bearer ryJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ikp1YW4iLCJlbWFpbCI6InRlc3Q1QHRlc3QuY29tIiwiaWF0IjoxNzM0Njk2MDM3LCJleHAiOjE3MzQ2OTk2Mzd9.RSFvcx11l2ojuZopVz9VY0xzgCLUJCV5xHTEbLIoZ44
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczODUyNzc1MywiZXhwIjoxNzM4NTMxMzUzfQ.aJlAmI70gulb7SAxEsTQQCs0pbVAIjsn-Z3__IUNk60

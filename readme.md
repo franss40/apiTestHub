@@ -16,10 +16,10 @@ El archivo de configuración **.env** se encuentra en la raíz del proyecto y co
 
 - PORT=<tu_puerto>
 - HOST=127.0.0.1
-- NODE_ENV=development
 - USER=<tu_usuario_mysql>
 - PASSWORD=<tu_contraseña_mysql>
 - DATABASE=<tu_base_de_datos_mysql>
+- JWT_SECRET=<tu_secret_jwt>
 
 ## Instalación
 
@@ -34,7 +34,6 @@ Para instalar el proyecto en tu máquina local, siga estos pasos:
 4. Configura las variables de entorno en el archivo .env:  
   - PORT=<tu_puerto>
   - HOST=127.0.0.1
-  - NODE_ENV=development
   - USER=<tu_usuario_mysql>
   - PASSWORD=<tu_contraseña_mysql>
   - DATABASE=<tu_base_de_datos_mysql>
@@ -53,11 +52,14 @@ El proyecto tiene varios scripts útiles definidos en el package.json:
 
 ## Estructura del proyecto
 
+/tests
+|
 /src
   ├── /middleware      # Middlewares
   ├── /routes          # Rutas de la API
   ├── /services        # Lógica de negocio y acceso a datos
-  ├── /types           # Definición de interfaces y tipos
+  ├── /types   
+  ├── /utils         
   ├── app.ts           # Archivo principal de configuración de Express
   ├── index.ts         # Punto de entrada de la aplicación
 /build                 # Compilación del código TypeScript
@@ -79,14 +81,17 @@ Asimismo se ha creado un par de alias para facilitar las importaciones:
 2. MySQL2: Cliente de base de datos MySQL.
 3. Morgan: Middleware para logging de solicitudes HTTP.
 4. CORS: Middleware para habilitar solicitudes de origen cruzado.
+5. Bcrypt: Funciones para encriptar y desencriptar contraseñas.
+6. Express-rate-limit: Middleware para limitar el número de solicitudes de un usuario.
+7. Jsonwebtoken: Funciones para crear y verificar tokens de autenticación.
+8. Dotenv: Cargar variables de entorno desde un archivo.
 
 **Dependencias de desarrollo:**
 1. TypeScript: Superconjunto de JavaScript con tipado estático.
 2. ESLint: Herramienta para garantizar la calidad del código.
 3. ts-node-dev: Herramienta para ejecutar código TypeScript en desarrollo con recarga rápida.
-4. Bcrypt: Funciones para encriptar y desencriptar contraseñas.
-5. Express-rate-limit: Middleware para limitar el número de solicitudes de un usuario.
-6. Jsonwebtoken: Funciones para crear y verificar tokens de autenticación.
+4. Jest: Herramienta para escribir tests.
+5. Supertest: Herramienta para realizar peticiones HTTP.
 
 ## Rutas de la API
 

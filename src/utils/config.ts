@@ -1,11 +1,13 @@
-process.loadEnvFile()
+import dotenv from 'dotenv'
+dotenv.config()
+
+const database = process.env.NODE_ENV === 'development' ? process.env.DATABASE : process.env.DATABASE_TEST
 
 export const config = {
   host: process.env.HOST || 'localhost',
   port: process.env.PORT || 3000,
-  database: process.env.DATABASE || 'testHub',
   user: process.env.USER || 'root',
+  database: database || 'testhub',
   password: process.env.PASSWORD || '',
-  node_env: process.env.NODE_ENV || 'development',
   secret: process.env.JWT_SECRET || 'default_secret',
 }
