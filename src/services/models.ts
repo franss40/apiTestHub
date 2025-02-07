@@ -38,3 +38,34 @@ export const getUser = async function (_email: string, callback: callback) {
   const sql = 'SELECT * FROM usuario WHERE email = ?'
   conn.query(sql, [_email], callback)
 }
+
+// Crear un test nuevo
+export const createTest = async function (_name: string, _description: string, _category: string, _userEmail: string, callback: callback) {
+  const sql = 'INSERT INTO test (name, description, category, date, userEmail) VALUES (?, ?, ?, CURDATE(), ?)'
+  conn.query(sql, [_name, _description, _category, _userEmail], callback)
+}
+
+// NOTE: A PARTIR DE AQUÍ SON FUNCIONES NUEVAS  A PROBAR
+// Crear una pregunta nueva
+export const createAsk = async function (_idTest: number, _ask: string, _answer1: string, _answer2: string, _answer3: string, _answer4: string, _sol: string, _multi: string, _image: string, _reference: string, callback: callback) {
+  const sql = 'INSERT INTO ask (test, ask, answer1, answer2, answer3, answer4, sol, multi, image, reference) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+  conn.query(sql, [_idTest, _ask, _answer1, _answer2, _answer3, _answer4, _sol, _multi, _image, _reference], callback)
+}
+
+// Actualizar una pregunta existente
+export const updateAsk = async function (_idAsk: number, _ask: string, _answer1: string, _answer2: string, _answer3: string, _answer4: string, _sol: string, _multi: string, _image: string, _reference: string, callback: callback) {
+  const sql = 'UPDATE ask SET ask = ?, answer1 = ?, answer2 = ?, answer3 = ?, answer4 = ?, sol = ?, multi = ?, image = ?, reference = ? WHERE idAsk = ?'
+  conn.query(sql, [_ask, _answer1, _answer2, _answer3, _answer4, _sol, _multi, _image, _reference, _idAsk], callback)
+}
+
+// Eliminar una pregunta existente
+export const deleteAsk = async function (_idAsk: number, callback: callback) {
+  const sql = 'DELETE FROM ask WHERE idAsk = ?'
+  conn.query(sql, [_idAsk], callback)
+}
+
+// Eliminar un test existente
+export const deleteTest = async function (_idTest: number, callback: callback) {
+  const sql = 'DELETE FROM test WHERE idTest = ?'
+  conn.query(sql, [_idTest], callback)
+}

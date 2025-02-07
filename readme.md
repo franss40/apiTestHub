@@ -97,7 +97,7 @@ Asimismo se ha creado un par de alias para facilitar las importaciones:
 
 La API está compuesta por las siguientes rutas:
 
-1. `/api/tests`
+1. `/api/test`
     Devuelve todos los tests, junto con el nombre de usuario.
 
 2. `/api/test/:idTest`
@@ -115,6 +115,10 @@ La API está compuesta por las siguientes rutas:
     Si los datos enviados son erréneos, devuelve un error 400.
     Si no tienes acceso, devuelve un error 401.
     Si te has registrado correctamente, te devuelve un token junto con el email y username.
+
+5. `/api/test/create`
+    Crea un nuevo test.
+    Crea un error 400 si falta algún dato y un 401 si no tienes acceso.
 
 ## Licencia
 

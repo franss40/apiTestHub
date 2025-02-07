@@ -22,6 +22,4 @@ routerAsk.get('/:idTest', async (_req, res) => {
   })
 })
 
-
-
 export default routerAsk

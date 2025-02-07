@@ -3,7 +3,9 @@ import jwt from 'jsonwebtoken'
 import { config } from '@src/utils/config'
 
 declare module 'express-serve-static-core' {
-  interface Request { token?: string | null, user?: unknown }
+  interface Request {
+    user?: { username: string; email: string }
+  }
 }
 
 export const authToken = (_req: Request, _res: Response, next: NextFunction) => {
@@ -14,7 +16,7 @@ export const authToken = (_req: Request, _res: Response, next: NextFunction) => 
   }
 
   try {
-    const verifyToken = jwt.verify(auth.split(' ')[1], config.secret)
+    const verifyToken = jwt.verify(auth.split(' ')[1], config.secret) as { username: string; email: string } | undefined
     _req.user = verifyToken
     next()
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

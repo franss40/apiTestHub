@@ -42,7 +42,6 @@ routerUser.post('/register', async (_req, res) => {
 routerUser.post('/login', limiterLogin, async (_req, res) => {
   const { email, password } = _req.body as { email: string; password: string }
   if (!validarEmail(email) || !validarContraseña(password)) {
-    // throw new Error('invalidData')
     res.status(400).json({
       error: 'No deben de faltar datos y la contraseña debe tener al menos 8 carácteres,\
                      mayúscula, minúsculas, númerico y especial (-_+*@#%&!)'
