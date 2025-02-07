@@ -42,3 +42,33 @@ Content-Type: application/json
 ###
 GET http://localhost:3001/api/user
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczODUyNzc1MywiZXhwIjoxNzM4NTMxMzUzfQ.aJlAmI70gulb7SAxEsTQQCs0pbVAIjsn-Z3__IUNk60
+
+### Caso de uso IV
+
+### Crear un nuevo test
+POST http://localhost:3001/api/test/create
+Content-Type: application/json
+Authorization: Bearer iIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczODk1NDMzMSwiZXhwIjoxNzM4OTU3OTMxfQ.qNQ6JQGYO0JzNLOWQlESG2K6P9-97xsRnSUc37cCGZE
+
+{
+    "name": "Test de prueba",
+    "description": "Este es un test de prueba",
+    "category": "Test"
+}
+
+### Crear una nueva pregunta (ask)
+POST http://localhost:3001/api/ask/create/6
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczODk1ODY2OSwiZXhwIjoxNzM4OTYyMjY5fQ.Z72Ws5Vn_Yr0LwsiFdYXWjTQjQQ804dY8OZfkgqVRE8
+
+{
+    "ask": "¿País mediterráneo de Europa?",
+    "answer1": "España",
+    "answer2": "Francia",
+    "answer3": "Alemania",
+    "answer4": "",
+    "sol": 1,
+    "multi": false,
+    "image": "",
+    "reference": ""
+}

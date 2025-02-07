@@ -1,5 +1,6 @@
 import express from 'express'
-import { getAsks, getUserTest } from '@src/services/models'
+import { getAsks, getUserTest, createAsk, getTestXId } from '@src/services/models'
+import { authToken } from '@src/middleware/authToken'
 
 const routerAsk = express.Router()
 
@@ -18,6 +19,47 @@ routerAsk.get('/:idTest', async (_req, res) => {
       if (err) return res.status(500).json({ error: 'Se ha producido un error inesperado' })
       if (!results || results.length === 0) return res.json({ info: [], asks: [] })
       return res.json({ info: results[0], asks })
+    })
+  })
+})
+
+
+// Create new ask (POST api/ask/create/:id)
+routerAsk.post('/create/:idTest', authToken, async (_req, res) => {
+  const test = Number(_req.params.idTest)
+
+  const { ask, answer1, answer2, answer3, answer4, sol, multi, image, reference } = _req.body as {
+    ask: string
+    answer1: string
+    answer2: string
+    answer3: string
+    answer4: string
+    sol: number
+    multi: boolean
+    image: string
+    reference: string
+  }
+
+  if (!test || !ask || !answer1 || !answer2 || !Number.isInteger(test)) {
+    res.status(400).json({
+      error: 'missing data'
+    })
+    return
+  }
+
+  if (sol < 1 || sol > 4 || !sol || !Number.isInteger(sol)) {
+    res.status(400).json({
+      error: 'missing solution or wrong solution'
+    })
+    return
+  }
+
+  getTestXId(test, async (err, results) => {
+    if (err) return res.status(500).json({ error: 'Se ha producido un error inesperado' })
+    if (!results || results.length === 0) return res.status(404).json({ error: 'Test no encontado' })
+    return createAsk(test, ask, answer1, answer2, answer3, answer4, sol, !!multi, image, reference, (err) => {
+      if (err) return res.status(500).json({ error: 'Se ha producido un error inesperado' })
+      return res.status(201).json({ message: 'Pregunta creada satisfactoriamente' })
     })
   })
 })

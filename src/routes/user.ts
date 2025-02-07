@@ -51,7 +51,6 @@ routerUser.post('/login', limiterLogin, async (_req, res) => {
 
   getUser(email, async (err, user) => {
     if (err) return res.status(500).json({ error: 'Error en la consulta a la base de datos' })
-    // if (err) throw new Error('Error en la consulta')
     if (!user || user.length === 0) return res.status(401).json({ error: 'No Access' })
 
     const isPasswordCorrect = await bcrypt.compare(password, user[0].password)
