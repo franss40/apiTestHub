@@ -6,6 +6,7 @@ import rateLimit from 'express-rate-limit'
 import { unknownEndPoint } from '@src/middleware/unknownEndPoint'
 import routerTest from '@src/routes/test'
 import routerUser from '@src/routes/user'
+import routerAsk from '@src/routes/ask'
 import { errorHandler } from '@src/middleware/errorHandler'
 
 const app = express()
@@ -22,7 +23,8 @@ app.use(morgan('dev'))
 app.use(cors())
 app.use(express.json())
 
-app.use('/api', routerTest)
+app.use('/api/test', routerTest)
+app.use('/api/ask', routerAsk)
 app.use('/api/user', routerUser)
 
 app.use(unknownEndPoint)

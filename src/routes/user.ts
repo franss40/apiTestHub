@@ -19,7 +19,6 @@ const limiterLogin = rateLimit({
 routerUser.post('/register', async (_req, res) => {
   const { email, password, username } = _req.body as { email: string; password: string; username: string }
   if (!username.trim() || !validarEmail(email) || username.includes(' ') || !validarContraseña(password)) {
-    // throw new Error('invalidData')
     res.status(400).json({
       error: 'No deben de faltar datos y la contraseña debe tener al menos 8 carácteres,\
                      mayúscula, minúsculas, númerico y especial (-_+*@#%&!)'

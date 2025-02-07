@@ -1,7 +1,7 @@
 ### Caso de uso I
 
 ### Devolver todos los tests junto con el nombre de usuario
-GET http://localhost:3001/api/tests
+GET http://localhost:3001/api/test
 
 
 
