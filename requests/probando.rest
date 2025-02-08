@@ -41,7 +41,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3001/api/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczODUyNzc1MywiZXhwIjoxNzM4NTMxMzUzfQ.aJlAmI70gulb7SAxEsTQQCs0pbVAIjsn-Z3__IUNk60
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTAxMDEwMSwiZXhwIjoxNzM5MDEzNzAxfQ.N9AYtXXP87647bcKhXud44yBuM2pnCzPaT8GY7n3RMY
 
 ### Caso de uso IV
 
@@ -55,6 +55,10 @@ Authorization: Bearer iIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOi
     "description": "Este es un test de prueba",
     "category": "Test"
 }
+
+### Eliminar un test
+DELETE http://localhost:3001/api/test/12
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTAxMDEwMSwiZXhwIjoxNzM5MDEzNzAxfQ.N9AYtXXP87647bcKhXud44yBuM2pnCzPaT8GY7n3RMY
 
 ### Crear una nueva pregunta (ask)
 POST http://localhost:3001/api/ask/create/6

@@ -1,5 +1,5 @@
 import express from 'express'
-import { getTests, createTest } from '@src/services/models'
+import { getTests, createTest, deleteTest, getTestXId } from '@src/services/models'
 import { authToken } from '@src/middleware/authToken'
 
 const routerTest = express.Router()
@@ -30,4 +30,23 @@ routerTest.post('/create', authToken, async (_req, res) => {
   })
 })
 
+// Delete test (DELETE api/test/:idTest)
+routerTest.delete('/:idTest', authToken, async (_req, res) => {
+  const idTest = Number(_req.params.idTest)
+  if (isNaN(idTest)) {
+    res.status(400).json({
+      error: 'El parámetro debe ser un número'
+    })
+    return
+  }
+
+  getTestXId(idTest, async (err, results) => {
+    if (err) return res.status(500).json({ error: 'Se ha producido un error inesperado' })
+    if (!results || results.length === 0) return res.status(404).json({ error: 'Test no encontado' })
+    return deleteTest(idTest, (err) => {
+      if (err) return res.status(500).json({ error: 'Se ha producido un error inesperado' })
+      return res.status(204).json({ message: 'Test eliminado satisfactoriamente' })
+    })
+  })
+})
 export default routerTest
