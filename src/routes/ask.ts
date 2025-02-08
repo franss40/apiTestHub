@@ -1,5 +1,6 @@
 import express from 'express'
-import { getAsks, getUserTest, createAsk, getAskXId, getTestXId, updateAsk, deleteAsk } from '@src/services/models'
+import { getAsks, createAsk, getAskXId, updateAsk, deleteAsk } from '@src/services/askModel'
+import { getUserTest, getTestXId } from '@src/services/testModel'
 import { authToken } from '@src/middleware/authToken'
 
 const routerAsk = express.Router()
@@ -25,7 +26,7 @@ routerAsk.get('/:idTest', async (_req, res) => {
 
 
 // Create new ask (POST api/ask/create/:id)
-routerAsk.post('/create/:idTest', authToken, async (_req, res) => {
+routerAsk.post('/:idTest', authToken, async (_req, res) => {
   const test = Number(_req.params.idTest)
 
   const { ask, answer1, answer2, answer3, answer4, sol, multi, image, reference } = _req.body as {

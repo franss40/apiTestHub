@@ -41,12 +41,11 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3001/api/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTAzODgyMSwiZXhwIjoxNzM5MDQyNDIxfQ.VmR7T4FY4cs5yvr7FUjd6EKxCXhb82168LJ4tLDX3tc
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTA0MTM5NiwiZXhwIjoxNzM5MDQ0OTk2fQ.zGI6p2-AkRRcADg8-sKsUow5aXIQXW1UXSxzHOuPEJA
 ### Caso de uso IV
 
 ### Crear un nuevo test
-POST http://localhost:3001/api/test/create
+POST http://localhost:3001/api/test/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTAzODgyMSwiZXhwIjoxNzM5MDQyNDIxfQ.VmR7T4FY4cs5yvr7FUjd6EKxCXhb82168LJ4tLDX3tc
 
@@ -57,7 +56,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZ
 }
 
 ### Actualizar un test
-PUT http://localhost:3001/api/test/14
+PUT http://localhost:3001/api/test/15
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTAzODgyMSwiZXhwIjoxNzM5MDQyNDIxfQ.VmR7T4FY4cs5yvr7FUjd6EKxCXhb82168LJ4tLDX3tc
 
@@ -68,8 +67,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZ
 }
 
 ### Eliminar un test: Se debe de eliminar en cascada las preguntas ( se encarga la base de datos)
-DELETE http://localhost:3001/api/test/12
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTAxMDEwMSwiZXhwIjoxNzM5MDEzNzAxfQ.N9AYtXXP87647bcKhXud44yBuM2pnCzPaT8GY7n3RMY
+DELETE http://localhost:3001/api/test/16
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTA0MTM5NiwiZXhwIjoxNzM5MDQ0OTk2fQ.zGI6p2-AkRRcADg8-sKsUow5aXIQXW1UXSxzHOuPEJA
 
 ### Crear una nueva pregunta (ask)
 POST http://localhost:3001/api/ask/create/6
@@ -106,5 +105,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZ
 }
 
 ### Eliminar una pregunta
-DELETE http://localhost:3001/api/ask/9
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTAzNzI1MCwiZXhwIjoxNzM5MDQwODUwfQ.erQa3URSvXUyi1APbEV36Y1P-NbZ2mlbDyRxlFDLgKA
+DELETE http://localhost:3001/api/ask/10
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTA0MTM5NiwiZXhwIjoxNzM5MDQ0OTk2fQ.zGI6p2-AkRRcADg8-sKsUow5aXIQXW1UXSxzHOuPEJA

@@ -1,5 +1,5 @@
 import express from 'express'
-import { getTests, createTest, deleteTest, getTestXId, updateTest } from '@src/services/models'
+import { getTests, createTest, deleteTest, getTestXId, updateTest } from '@src/services/testModel'
 import { authToken } from '@src/middleware/authToken'
 
 const routerTest = express.Router()
@@ -13,7 +13,7 @@ routerTest.get('/', async (_req, res) => {
 })
 
 // Add new test (POST api/test/create)
-routerTest.post('/create', authToken, async (_req, res) => {
+routerTest.post('/', authToken, async (_req, res) => {
   const user = _req.user
 
   const { name, description, category } = _req.body as { name: string; description: string; category: string }

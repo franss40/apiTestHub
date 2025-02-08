@@ -3,9 +3,9 @@ import { validarEmail, validarContraseña } from '@src/utils/validation'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { config } from '@src/utils/config'
-import { authToken } from '../middleware/authToken'
+import { authToken } from '@src/middleware/authToken'
 import rateLimit from 'express-rate-limit'
-import { registerUser, getUser } from '../services/models'
+import { registerUser, getUser } from '@src/services/userModel'
 
 const routerUser = express.Router()
 
@@ -65,6 +65,7 @@ routerUser.post('/login', limiterLogin, async (_req, res) => {
   })
 })
 
+// Sólo para probar el funcionamiento del middleware authToken
 routerUser.get('/', authToken, async (_req, res) => {
   res.json({ message: 'Hola, soy un usuario', user: _req.user })
 })
