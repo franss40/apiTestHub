@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAsks, getUserTest, createAsk, getAskXId, getTestXId, deleteAsk } from '@src/services/models'
+import { getAsks, getUserTest, createAsk, getAskXId, getTestXId, updateAsk, deleteAsk } from '@src/services/models'
 import { authToken } from '@src/middleware/authToken'
 
 const routerAsk = express.Router()
@@ -64,6 +64,52 @@ routerAsk.post('/create/:idTest', authToken, async (_req, res) => {
   })
 })
 
+// update ask (PUT api/ask/:idAsk)
+routerAsk.put('/:idAsk', authToken, async (_req, res) => {
+  const idAsk = Number(_req.params.idAsk)
+  if (isNaN(idAsk)) {
+    res.status(400).json({
+      error: 'El parámetro debe ser un número'
+    })
+    return
+  }
+
+  const { ask, answer1, answer2, answer3, answer4, sol, multi, image, reference } = _req.body as {
+    ask: string
+    answer1: string
+    answer2: string
+    answer3: string
+    answer4: string
+    sol: number
+    multi: boolean
+    image: string
+    reference: string
+  }
+
+  if (!ask.trim() || !answer1.trim() || !answer2.trim() || !sol || !Number.isInteger(sol)) {
+    res.status(400).json({
+      error: 'missing data'
+    })
+    return
+  }
+
+  if (sol < 1 || sol > 4 || !sol || !Number.isInteger(sol)) {
+    res.status(400).json({
+      error: 'missing solution or wrong solution'
+    })
+    return
+  }
+
+  getAskXId(idAsk, async (err, results) => {
+    if (err) return res.status(500).json({ error: 'Se ha producido un error inesperado' })
+    if (!results || results.length === 0) return res.status(404).json({ error: 'Pregunta no encontada' })
+    return updateAsk(idAsk, ask, answer1, answer2, answer3, answer4, sol, !!multi, image, reference, (err) => {
+      if (err) return res.status(500).json({ error: 'Se ha producido un error inesperado' })
+      return res.status(200).json({ message: 'Pregunta actualizada satisfactoriamente' })
+    })
+  })
+})
+
 // Delete Ask (DELETE api/ask/:idTest)
 routerAsk.delete('/:idAsk', authToken, async (_req, res) => {
   const idAsk = Number(_req.params.idAsk)
@@ -79,7 +125,7 @@ routerAsk.delete('/:idAsk', authToken, async (_req, res) => {
     if (!results || results.length === 0) return res.status(404).json({ error: 'Pregunta no encontada' })
     return deleteAsk(idAsk, (err) => {
       if (err) return res.status(500).json({ error: 'Se ha producido un error inesperado' })
-      return res.status(204).json({ message: 'Pregunta eliminada satisfactoriamente' })
+      return res.status(204).send()
     })
   })
 })

@@ -41,14 +41,14 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3001/api/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTAxMDEwMSwiZXhwIjoxNzM5MDEzNzAxfQ.N9AYtXXP87647bcKhXud44yBuM2pnCzPaT8GY7n3RMY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTAzODgyMSwiZXhwIjoxNzM5MDQyNDIxfQ.VmR7T4FY4cs5yvr7FUjd6EKxCXhb82168LJ4tLDX3tc
 
 ### Caso de uso IV
 
 ### Crear un nuevo test
 POST http://localhost:3001/api/test/create
 Content-Type: application/json
-Authorization: Bearer iIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczODk1NDMzMSwiZXhwIjoxNzM4OTU3OTMxfQ.qNQ6JQGYO0JzNLOWQlESG2K6P9-97xsRnSUc37cCGZE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTAzODgyMSwiZXhwIjoxNzM5MDQyNDIxfQ.VmR7T4FY4cs5yvr7FUjd6EKxCXhb82168LJ4tLDX3tc
 
 {
     "name": "Test de prueba",
@@ -56,14 +56,25 @@ Authorization: Bearer iIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOi
     "category": "Test"
 }
 
-### Eliminar un test
+### Actualizar un test
+PUT http://localhost:3001/api/test/14
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTAzODgyMSwiZXhwIjoxNzM5MDQyNDIxfQ.VmR7T4FY4cs5yvr7FUjd6EKxCXhb82168LJ4tLDX3tc
+
+{
+    "name": "Nuevo nombre",
+    "description": "A ver si funciona",
+    "category": "Test, prueba"
+}
+
+### Eliminar un test: Se debe de eliminar en cascada las preguntas ( se encarga la base de datos)
 DELETE http://localhost:3001/api/test/12
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTAxMDEwMSwiZXhwIjoxNzM5MDEzNzAxfQ.N9AYtXXP87647bcKhXud44yBuM2pnCzPaT8GY7n3RMY
 
 ### Crear una nueva pregunta (ask)
 POST http://localhost:3001/api/ask/create/6
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczODk1ODY2OSwiZXhwIjoxNzM4OTYyMjY5fQ.Z72Ws5Vn_Yr0LwsiFdYXWjTQjQQ804dY8OZfkgqVRE8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTAzNzI1MCwiZXhwIjoxNzM5MDQwODUwfQ.erQa3URSvXUyi1APbEV36Y1P-NbZ2mlbDyRxlFDLgKA
 
 {
     "ask": "¿País mediterráneo de Europa?",
@@ -76,3 +87,24 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZ
     "image": "",
     "reference": ""
 }
+
+### Actualizar una pregunta
+PUT http://localhost:3001/api/ask/10
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTAzODgyMSwiZXhwIjoxNzM5MDQyNDIxfQ.VmR7T4FY4cs5yvr7FUjd6EKxCXhb82168LJ4tLDX3tc
+
+{
+    "ask": "¿País mediterráneo del continente europeo?",
+    "answer1": "Reino de España",
+    "answer2": "País de Francia",
+    "answer3": "País de Alemania",
+    "answer4": "Inglaterra",
+    "sol": 1,
+    "multi": false,
+    "image": "",
+    "reference": ""
+}
+
+### Eliminar una pregunta
+DELETE http://localhost:3001/api/ask/9
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlZHJvIiwiZW1haWwiOiJ0ZXN0NEB0ZXN0LmNvbSIsImlhdCI6MTczOTAzNzI1MCwiZXhwIjoxNzM5MDQwODUwfQ.erQa3URSvXUyi1APbEV36Y1P-NbZ2mlbDyRxlFDLgKA
