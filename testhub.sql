@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `ask` (
   `idAsk` bigint(20) NOT NULL AUTO_INCREMENT,
   `ask` varchar(500) NOT NULL,
   `answer1` varchar(500) NOT NULL,
-  `answer2` varchar(500) DEFAULT NULL,
+  `answer2` varchar(500) NOT NULL,
   `answer3` varchar(500) DEFAULT NULL,
   `answer4` varchar(500) DEFAULT NULL,
   `sol` varchar(250) NOT NULL,

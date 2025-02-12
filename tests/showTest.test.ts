@@ -1,7 +1,6 @@
 import app from '@src/app'
 import supertest from 'supertest'
-// import { typeTest, typeAsk } from '@src/types/datasTypes'
-
+import { typeTest } from '@src/types/datasTypes'
 import conn from '@src/services/conn'
 import { QueryError, RowDataPacket } from 'mysql2'
 
@@ -31,6 +30,8 @@ export const deleteTableUser = async function (callback: callback) {
 const api = supertest(app)
 
 let token: string
+let idTest: number
+let idAsk: number
 
 // vaciar las tablas de prueba antes de hacer cualquier prueba
 beforeAll((done) => {
@@ -203,52 +204,163 @@ describe('Comprobar acceso a una ruta', () => {
       .set('Content-Type', 'application/json')
 
     expect(response.status).toBe(401)
-    expect(response.body).toHaveProperty('error', 'Credenciales inválidas')
+    expect(response.body).toHaveProperty('message', 'Token invalid')
     expect(response.headers['content-type']).toMatch(/json/)
   })
 })
 
+// NOTE: Crear un nuevo test
+describe('Create new test', () => {
+  test('Create new test', async () => {
+    const response = await api
+      .post('/api/test/')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        name: 'Test de prueba',
+        description: 'Este es un test de prueba',
+        category: 'Test'
+      })
 
-/* describe('Probando rutas tests', () => {
-  test('Verificar entorno de ejecución', () => {
-    expect(process.env.NODE_ENV).toBe('test')
-  })
-
-  test('Recuperando todos los tests: ruta GET /api/tests', async () => {
-    const response = await api.get('/api/tests')
-    const data: extendedTypeTest[] = response.body
-    expect(response.status).toBe(200)
-    expect(response.body).toHaveLength(1)
-    expect(response.body[0].name).toBe('CAP DE MERCANCÍAS Y VIAJEROS DE TEST')
-    expect(response.headers['content-type']).toMatch(/json/)
-
-    const contents = data.map(name => name.name)
-    expect(contents).toContain('CAP DE MERCANCÍAS Y VIAJEROS DE TEST')
-  })
-
-  test('Recuperando un test que no existe: ruta GET /api/test/1', async () => {
-    const response = await api.get('/api/test/1')
-    expect(response.status).toBe(200)
-    expect(response.body).toHaveLength(0)
+    expect(response.status).toBe(201)
+    expect(response.body).toHaveProperty('message', 'Test creado satisfactoriamente')
     expect(response.headers['content-type']).toMatch(/json/)
   })
+})
 
-  test('Recuperando un test que existe: ruta GET /api/test/6', async () => {
-    const response = await api.get('/api/test/6')
+// NOTE: Crear un nuevo ask
+describe('Create new ask', () => {
+  test('Create new ask', async () => {
+    const response2 = await api
+      .get('/api/test/')
+
+    expect(response2.status).toBe(200)
+    expect(response2.headers['content-type']).toMatch(/json/)
+    expect(response2.body).toHaveLength(1)
+    const contents = response2.body.map((r: typeTest) => r.name)
+    expect(contents).toContain('Test de prueba')
+    idTest = response2.body[0].idTest
+
+    const response = await api
+      .post(`/api/ask/${idTest}`)
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        ask: '¿País mediterráneo de Europa?',
+        answer1: 'España',
+        answer2: 'Francia',
+        answer3: 'Alemania',
+        answer4: '',
+        sol: 1,
+        multi: false,
+        image: '',
+        reference: '',
+      })
+
+    expect(response.status).toBe(201)
+    expect(response.headers['content-type']).toMatch(/json/)
+  })
+})
+
+// NOTE: Actualizar un test y sus preguntas
+describe('Update test y sus preguntas', () => {
+  test('Update test', async () => {
+    const response2 = await api
+      .get(`/api/ask/${idTest}`)
+      .set('Authorization', `Bearer ${token}`)
+
+    expect(response2.status).toBe(200)
+    expect(response2.headers['content-type']).toMatch(/json/)
+    expect(response2.body.asks).toHaveLength(1)
+    idAsk = response2.body.asks[0].idAsk
+
+    const response = await api
+      .put(`/api/test/${idTest}`)
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        name: 'Cambiando el nombre',
+        description: 'Cambiando la descripción',
+        category: 'Test, prueba',
+      })
+
     expect(response.status).toBe(200)
-    expect(response.body).toHaveLength(2)
+    expect(response.body).toHaveProperty('message', 'Test actualizado satisfactoriamente')
     expect(response.headers['content-type']).toMatch(/json/)
 
-    const data: typeAsk[] = response.body
-    const contents = data.map(name => name.ask)
-    const ask1 = 'efectos de la aplicación de la normativa de extranjería, el llamado "Espacio Schengen" comprende países pertenecientes a:'
-    const ask2 = '¿Es adecuado que un vehículo venga equipado con la mayor potencia posible para la carga que puede transportar?'
-    expect(contents).toContain(ask1)
-    expect(contents).toContain(ask2)
+    const response3 = await api
+      .get('/api/test')
+
+    expect(response3.status).toBe(200)
+    expect(response3.headers['content-type']).toMatch(/json/)
+    expect(response3.body[0]).toHaveProperty('name', 'Cambiando el nombre')
+    expect(response3.body[0]).toHaveProperty('description', 'Cambiando la descripción')
+    expect(response3.body[0]).toHaveProperty('category', 'Test, prueba')
   })
 
-  test('Recuperando un test que no es un número: ruta GET /api/test/error', async () => {
-    const response = await api.get('/api/test/error')
-    expect(response.status).toBe(400)
-  }) 
-})*/
+  test('Update ask', async () => {
+    const ruta = `/api/ask/${idAsk}`
+    const response = await api
+      .put(ruta)
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        ask: '¿País mediterráneo del continente europeo?',
+        answer1: 'Reino de España',
+        answer2: 'País de Francia',
+        answer3: 'País de Alemania',
+        answer4: 'Inglaterra',
+        sol: 2,
+        multi: false,
+        image: '',
+        reference: '',
+      })
+    expect(response.status).toBe(200)
+    expect(response.headers['content-type']).toMatch(/json/)
+    expect(response.body).toHaveProperty('message', 'Pregunta actualizada satisfactoriamente')
+
+    const response3 = await api
+      .get(`/api/ask/${idTest}`)
+
+    expect(response3.status).toBe(200)
+    expect(response3.headers['content-type']).toMatch(/json/)
+    console.log('respuesta', response3.body)
+    expect(response3.body.asks[0]).toHaveProperty('ask', '¿País mediterráneo del continente europeo?')
+    expect(response3.body.asks[0]).toHaveProperty('answer1', 'Reino de España')
+  })
+})
+
+// NOTE: Eliminar un test y sus preguntas
+describe('Delete test y sus preguntas', () => {
+  test('Delete ask', async () => {
+    const ruta = `/api/ask/${idAsk}`
+    const response = await api
+      .delete(ruta)
+      .set('Authorization', `Bearer ${token}`)
+
+    expect(response.status).toBe(204)
+
+    const response2 = await api
+      .get(`/api/ask/${idTest}`)
+      .set('Authorization', `Bearer ${token}`)
+
+    expect(response2.status).toBe(200)
+    expect(response2.headers['content-type']).toMatch(/json/)
+    expect(response2.body.asks).toHaveLength(0)
+  })
+
+  test('Delete test', async () => {
+    const response = await api
+      .delete(`/api/test/${idTest}`)
+      .set('Authorization', `Bearer ${token}`)
+
+    expect(response.status).toBe(204)
+
+    const response2 = await api
+      .get('/api/test/')
+
+    expect(response2.status).toBe(200)
+    expect(response2.headers['content-type']).toMatch(/json/)
+    expect(response2.body).toHaveLength(0)
+  })
+})

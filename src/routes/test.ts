@@ -12,7 +12,7 @@ routerTest.get('/', async (_req, res) => {
   })
 })
 
-// Add new test (POST api/test/create)
+// Add new test (POST api/test/)
 routerTest.post('/', authToken, async (_req, res) => {
   const user = _req.user
 

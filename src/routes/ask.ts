@@ -5,7 +5,7 @@ import { authToken } from '@src/middleware/authToken'
 
 const routerAsk = express.Router()
 
-// Recuperar las preguntas de un determinado test junto nombre de usuario y nombre del test (GET api/test/:idTest)
+// Recuperar las preguntas de un determinado test junto nombre de usuario y nombre del test (GET api/ask/:idTest)
 // {info: {idTest, name, username}, asks: [{idAsk, ask, answer1, answer2, answer3, answer4, sol, multi, image, reference}, ...]}
 routerAsk.get('/:idTest', async (_req, res) => {
   const idTest = Number(_req.params.idTest)
@@ -25,7 +25,7 @@ routerAsk.get('/:idTest', async (_req, res) => {
 })
 
 
-// Create new ask (POST api/ask/create/:id)
+// Create new ask (POST api/ask/:id)
 routerAsk.post('/:idTest', authToken, async (_req, res) => {
   const test = Number(_req.params.idTest)
 
