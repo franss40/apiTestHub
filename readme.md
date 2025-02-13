@@ -10,6 +10,10 @@ La API de **testHub** está diseñada para interactuar con la base de datos y ma
 
 Para la conexión a la base de datos **MySQL** se utiliza la libreria **MySQL2**. La base de datos se conecta a través de un archivo de configuración **.env**. Para la creación de la base de datos, puedes usar el script **testhub.sql** que se encuentra en la raíz del proyecto.
 
+## Pruebas
+
+Para las pruebas se ha utilizado Supertest con Jest. Las pruebas se llevan a cabo en una base de datos imagen a la real con el nombre de test_testhub en un espacio controlado para la ejecución de las pruebas. Las constantes estan en el archivo .env.
+
 ## Archivo de configuración
 
 El archivo de configuración **.env** se encuentra en la raíz del proyecto y contiene las credenciales de la base de datos y el puerto de la aplicación **node**:
