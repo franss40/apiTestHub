@@ -12,6 +12,21 @@ routerTest.get('/', async (_req, res) => {
   })
 })
 
+// Recuperar un determinado test (GET api/test/:idTest)
+routerTest.get('/:idTest', async (_req, res) => {
+  const idTest = Number(_req.params.idTest)
+  if (isNaN(idTest)) {
+    res.status(400).json({
+      error: 'El parámetro debe ser un número'
+    })
+    return
+  }
+  getTestXId(idTest, (err, results) => {
+    if (err) return res.status(500).json({ error: 'Se ha producido un error inesperado' })
+    return res.json(results[0])
+  })
+})
+
 // Add new test (POST api/test/)
 routerTest.post('/', authToken, async (_req, res) => {
   const user = _req.user

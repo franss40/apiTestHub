@@ -72,7 +72,7 @@ El código fuente se encuentra en la carpeta /src y los archivos generados se co
 
 Asimismo se ha creado un par de alias para facilitar las importaciones:
 - @ = Equivale a la raíz del proyecto
-- @/src = Equivale a la carpeta src
+- @src = Equivale a la carpeta src
 
 ## Dependencias
 
@@ -97,28 +97,140 @@ Asimismo se ha creado un par de alias para facilitar las importaciones:
 
 La API está compuesta por las siguientes rutas:
 
-1. `/api/test`
-    Devuelve todos los tests, junto con el nombre de usuario.
+1. `GET /api/test`
+    Esto es una ruta pública. Devuelve todos los tests, junto con el nombre de usuario en este formato:
 
-2. `/api/test/:idTest`
-    Devuelve un test específico, junto con todas sus preguntas y el nombre de usuario.
-    Si no existe el test, devuelve un array vacío.
-    Si el parámetro es un string, devuelve un error 400.
+    >{
+      idTest: number;
+      name: string;
+      description: string;
+      category: string;
+      date: date;
+      userEmail: string;
+      username: string;
+    }
 
-3. `/api/user/register`
-    Crea un nuevo usuario.
-    Si los datos son erróneos o el email ya existe, devuelve un error 400.
-    Grabo el usuario con la contraseña encriptada con bcrypt.
+2. `GET /api/test/:idTest`
+    Esto es una ruta pública. Devuelve un test específico. Si no existe el test, devuelve un array vacío.
+    Si el parámetro es un string, devuelve un error 400. El formato es el siguiente:
+    
+    >{
+      idTest: number;
+      name: string;
+      description: string;
+      category: string;
+      date: date;
+      userEmail: string;
+      username: string;
+    }
 
-4. `/api/user/login`
-    Hace login al usuario.
-    Si los datos enviados son erréneos, devuelve un error 400.
-    Si no tienes acceso, devuelve un error 401.
-    Si te has registrado correctamente, te devuelve un token junto con el email y username.
+3. `POST /api/test`
+    Esto es una ruta privada y sólo los que esten registrados podrán acceder a esta ruta. Agrega un nuevo test. La petición debe de contener los siguientes datos obligatorios:
+    
+    >{
+      name: string,
+      description: string,
+      category: string
+    }
+    
+    Si falta algun dato devuelve un error 400. Si es satisfactoria la petición responde con un estado de 201.
 
-5. `/api/test/create`
-    Crea un nuevo test.
-    Crea un error 400 si falta algún dato y un 401 si no tienes acceso.
+4. `PUT /api/test/:idTest`
+    Esto es una ruta privada y sólo los que esten registrados podrán acceder a esta ruta. Actualiza un test determinado. La petición debe de contener los siguientes datos obligatorios:
+
+    >{
+      name: string,
+      description: string,
+      category: string
+    }
+
+    Si falta algun dato o el test con idTest no existe devuelve un error 400. Si es satisfactoria la petición responde con un estado 200.
+
+5. `DELETE /api/test/:idTest`
+    Esto es una ruta privada y sólo los que esten registrados podrán acceder a esta ruta. Elimina un test determinado. Si el test con idTest no existe devuelve un error 400. Si es satisfactoria la petición responde con un estado 204.
+
+6. `POST /api/user/register`
+    Crea un nuevo usuario. La petición debe de contener los siguientes datos obligatorios:
+
+    >{
+      email: string,
+      password: string
+    }
+
+    Si falta algun dato o la contraseña no está validada correctamente devuelve un error 400. Si es satisfactoria la petición responde con un estado de 201.
+    La contraseña se encripta y tiene que contener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un caracter especial (-_+*@#%&!).
+
+7. `POST /api/user/login`
+    Hace login al usuario. La petición debe de contener los siguientes datos obligatorios:
+
+    >{
+      email: string,
+      password: string
+    }
+
+    Si falta algun dato o la contraseña no está validada correctamente devuelve un error 400. Si es satisfactoria la petición responde con un estado de 201 con el token de autenticación.
+   
+8. `GET /api/ask/:idTest`
+    Ruta pública que permite obtener las preguntas de un test dado. La respuesta sigue el siguiente formato:
+
+    >{
+      info: { idTest: number, name: string, username: string },
+      asks: [
+        {
+          idAsk: number, 
+          ask: number, 
+          answer1: number, 
+          answer2: number,
+          answer3: number, 
+          answer4: number,
+          sol: number,
+          multi: boolean
+          image: string
+          reference: string
+        },
+        ...
+      ]
+    }
+
+    Si no existe el test devuelve {info: null, asks: []}.
+
+9. `POST /api/ask/:idTest`
+    Ruta privada que permite crear una nueva pregunta de un determinado test. La petición debe de contener los siguientes datos:
+
+    >{
+      ask: string,
+      answer1: string,
+      answer2: string,
+      answer3: string,
+      answer4: string,
+      sol: number,
+      multi: boolean,
+      image: string,
+      reference: string
+    }
+
+    El campo ask, answer1 y 2, sol y multi son obligatorios.
+    Si falta algun dato o la solución no es correcta devuelve un error 400. Si es satisfactoria la petición responde con un estado de 201.
+
+10. `PUT /api/ask/:idAsk`
+    Ruta privada que permite actualizar una pregunta en un determinado test. La petición debe de contener los siguientes datos obligatorios:
+
+    >{
+      ask: string,
+      answer1: string,
+      answer2: string,
+      answer3: string,
+      answer4: string,
+      sol: number,
+      multi: boolean,
+      image: string,
+      reference: string
+    }
+
+    Si falta algun dato o la solución no es correcta devuelve un error 400. Si es satisfactoria la petición responde con un estado de 200.
+
+11. `DELETE /api/ask/:idAsk`
+    Ruta privada que permite eliminar una pregunta en un determinado test. Si no existe la pregunta devuelve un error 404. Si es satisfactoria la petición responde con un estado de 204.
 
 ## Licencia
 

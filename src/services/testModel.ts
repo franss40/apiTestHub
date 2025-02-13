@@ -13,7 +13,7 @@ export const getTests = function (callback: callback) {
 
 // Recupero un determinado test con un idTest
 export const getTestXId = function (_idTest: number, callback: callback) {
-  const sql = 'SELECT * FROM test WHERE idTest = ?'
+  const sql = 'SELECT test.*, usuario.username FROM test inner join usuario on test.userEmail = usuario.email WHERE test.idTest = ?'
   conn.query(sql, [_idTest], callback)
 }
 

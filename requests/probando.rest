@@ -3,7 +3,8 @@
 ### Devolver todos los tests junto con el nombre de usuario
 GET http://localhost:3001/api/test
 
-
+### Recuperar un determinado test
+GET http://localhost:3001/api/test/15
 
 ### Caso de uso II
 

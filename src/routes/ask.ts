@@ -18,7 +18,7 @@ routerAsk.get('/:idTest', async (_req, res) => {
     if (err) return res.status(500).json({ error: 'Se ha producido un error inesperado' })
     return getUserTest(idTest, (err, results) => {
       if (err) return res.status(500).json({ error: 'Se ha producido un error inesperado' })
-      if (!results || results.length === 0) return res.json({ info: [], asks: [] })
+      if (!results || results.length === 0) return res.json({ info: null, asks: [] })
       return res.json({ info: results[0], asks })
     })
   })
