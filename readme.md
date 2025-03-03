@@ -182,11 +182,11 @@ La API está compuesta por las siguientes rutas:
       asks: [
         {
           idAsk: number, 
-          ask: number, 
-          answer1: number, 
-          answer2: number,
-          answer3: number, 
-          answer4: number,
+          ask: string, 
+          answer1: string, 
+          answer2: string,
+          answer3: string, 
+          answer4: string,
           sol: number,
           multi: boolean
           image: string
