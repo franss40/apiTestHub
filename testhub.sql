@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-02-2025 a las 12:29:37
+-- Tiempo de generación: 17-03-2025 a las 12:06:54
 -- Versión del servidor: 11.3.2-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -46,8 +46,13 @@ CREATE TABLE `ask` (
 --
 
 INSERT INTO `ask` (`idAsk`, `ask`, `answer1`, `answer2`, `answer3`, `answer4`, `sol`, `multi`, `image`, `reference`, `test`) VALUES
-(5, 'efectos de la aplicación de la normativa de extranjería, el llamado \"Espacio Schengen\" comprende países pertenecientes a:', 'Europa.\r\n', 'Europa e Iberoamérica.', 'Europa y el norte de África.', 'Hispanoamérica.', '1', 0, NULL, 'NORMA: Convenio Aplicación del Acuerdo de Schengen, Art. 140', 6),
-(6, '¿Es adecuado que un vehículo venga equipado con la mayor potencia posible para la carga que puede transportar?\r\n', 'Sí, porque así puede hacer el transporte más rápidamente.\r\n', 'Sí, porque de esta forma puede subir cualquier pendiente de la carretera.\r\n', 'No, porque los consumos son más elevados.', 'No, porque no tiene importancia que el vehículo se desplace lentamente.', '3', 0, NULL, 'NORMA: Manual de gestión del combustible en las flotas de transporte. IDAE.\r\nREFERENCIA DOCTRINAL: Manual de gestión del combustible en las flotas de transporte. IDAE.', 6);
+(11, '¿Qué método se utiliza para mostrar un mensaje emergente en JavaScript?', 'alertBox()', 'popup()', 'alert()', 'message()', '3', 0, NULL, 'Para mostrar un texto en mensaje emergente se usa alert(\'Esto es un mensaje\')', 19),
+(12, '¿Qué palabra clave se utiliza para declarar una variable en JavaScript?', 'let', 'declare', 'variable', 'new', '1', 0, NULL, 'Las variables se pueden declarar con var o let. Las constantes con const.', 19),
+(13, '¿Cuál es el operador de concatenación en JavaScript?', '+', '&', '-', '*', '1', 0, NULL, 'Para concatenar cadenas se usa el operador +', 19),
+(16, '¿Qué devuelve la expresión typeof 42 en JavaScript?', 'number', 'string', 'integer', 'float', '1', 0, NULL, 'Type <...> nos devuelve el tipo de datos.', 19),
+(17, '¿Cómo defines una función en JavaScript?', 'function myFunction() { }', 'define myFunction() { }', 'create myFunction() { }', 'make myFunction() { }', '1', 0, NULL, NULL, 19),
+(18, '¿Qué propiedad de CSS se utiliza para cambiar el color de fondo de un elemento?', 'color', 'background-color', 'background', 'border-color', '2', 0, NULL, 'Para la propiedad de fondo se utiliza background-color y para el color color.', 21),
+(19, '¿Cuál es el valor predeterminado de la propiedad position en CSS?\r\n\r\n', 'absolute', 'fixed', 'static', 'relative', '3', 0, NULL, NULL, 21);
 
 -- --------------------------------------------------------
 
@@ -61,17 +66,17 @@ CREATE TABLE `test` (
   `description` varchar(255) NOT NULL,
   `category` varchar(255) NOT NULL,
   `date` date NOT NULL DEFAULT current_timestamp(),
-  `userEmail` varchar(255) NOT NULL
+  `idUser` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
 -- Volcado de datos para la tabla `test`
 --
 
-INSERT INTO `test` (`idTest`, `name`, `description`, `category`, `date`, `userEmail`) VALUES
-(6, 'CAP DE MERCANCÍAS Y VIAJEROS', '50 PREGUNTAS REFERENTES AL CAP', 'CAP, VIAJEROS, MERCANCIAS', '2024-12-18', 'test@test.com'),
-(14, 'Nuevo nombre', 'A ver si funciona', 'Test, prueba', '2025-02-08', 'test4@test.com'),
-(15, 'Nuevo nombre', 'A ver si funciona', 'Test, prueba', '2025-02-08', 'test4@test.com');
+INSERT INTO `test` (`idTest`, `name`, `description`, `category`, `date`, `idUser`) VALUES
+(19, 'javaScript', 'Preguntas sobre el lenguaje JavaScript', 'javascript', '2025-03-17', 4),
+(20, 'Literatura contemporánea de España', 'Literatura', 'Literatura', '2025-03-17', 1),
+(21, 'Todo sobre CSS', 'Preguntas sobre css', 'CSS, programación', '2025-03-17', 2);
 
 -- --------------------------------------------------------
 
@@ -80,6 +85,7 @@ INSERT INTO `test` (`idTest`, `name`, `description`, `category`, `date`, `userEm
 --
 
 CREATE TABLE `usuario` (
+  `idUser` bigint(20) NOT NULL,
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
@@ -89,11 +95,11 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`email`, `username`, `password`) VALUES
-('test2@test.com', 'Pedro', '$2b$10$LiUtpO5XobcMUtfCVj5V0uQDd8GL/Tryua3PXBL8cfoYB0O9vqPuG'),
-('test4@test.com', 'Pedro', '$2b$10$KYXV2b8KuuRGw.OZELJSZ.nqNy1Oq6RdbjXO0DQ67h/8m/hg4zm82'),
-('test5@test.com', 'Pedro', '$2b$10$5tJxnlQ4xaHGt8YnZ6hBm.rWFRPCWTzW04pGs6PYVw7lWUVIJpBVK'),
-('test@test.com', 'dsd', '$2b$10$QQDQw6JMKdoceExeT43fAe..yRsdAYDeGMPXxsEogCqs4y7u6T9ky');
+INSERT INTO `usuario` (`idUser`, `email`, `username`, `password`) VALUES
+(1, 'test2@test.com', 'Pedro', '$2b$10$LiUtpO5XobcMUtfCVj5V0uQDd8GL/Tryua3PXBL8cfoYB0O9vqPuG'),
+(2, 'test4@test.com', 'Pedro', '$2b$10$KYXV2b8KuuRGw.OZELJSZ.nqNy1Oq6RdbjXO0DQ67h/8m/hg4zm82'),
+(3, 'test5@test.com', 'Pedro', '$2b$10$5tJxnlQ4xaHGt8YnZ6hBm.rWFRPCWTzW04pGs6PYVw7lWUVIJpBVK'),
+(4, 'test@test.com', 'dsd', '$2b$10$QQDQw6JMKdoceExeT43fAe..yRsdAYDeGMPXxsEogCqs4y7u6T9ky');
 
 --
 -- Índices para tablas volcadas
@@ -111,13 +117,13 @@ ALTER TABLE `ask`
 --
 ALTER TABLE `test`
   ADD PRIMARY KEY (`idTest`),
-  ADD KEY `userEmail` (`userEmail`);
+  ADD KEY `idUser` (`idUser`);
 
 --
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`email`);
+  ADD PRIMARY KEY (`idUser`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -127,13 +133,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `ask`
 --
 ALTER TABLE `ask`
-  MODIFY `idAsk` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idAsk` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `test`
 --
 ALTER TABLE `test`
-  MODIFY `idTest` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idTest` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `idUser` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
@@ -149,7 +161,7 @@ ALTER TABLE `ask`
 -- Filtros para la tabla `test`
 --
 ALTER TABLE `test`
-  ADD CONSTRAINT `test_ibfk_1` FOREIGN KEY (`userEmail`) REFERENCES `usuario` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `test_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `usuario` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

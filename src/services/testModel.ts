@@ -7,20 +7,27 @@ interface callback {
 
 // Recupero todos los tests junto con el nombre de usuario
 export const getTests = function (callback: callback) {
-  const sql = 'SELECT test.*, usuario.username FROM test inner join usuario on test.userEmail = usuario.email'
+  const sql = 'SELECT test.*, usuario.username FROM test inner join usuario on test.idUser = usuario.idUser'
   conn.query(sql, callback)
 }
 
+// Recupero todos las preguntas creadas por un usuario. Sólo para administradores
+export const getTestsByUser = function (_idUser: number, callback: callback) {
+  const sql = 'SELECT test.*, usuario.username FROM test inner join usuario on test.idUser = usuario.idUser WHERE test.idUser = ?'
+  conn.query(sql, [_idUser], callback)
+}
+
+
 // Recupero un determinado test con un idTest
 export const getTestXId = function (_idTest: number, callback: callback) {
-  const sql = 'SELECT test.*, usuario.username FROM test inner join usuario on test.userEmail = usuario.email WHERE test.idTest = ?'
+  const sql = 'SELECT test.*, usuario.username FROM test inner join usuario on test.idUser = usuario.idUser WHERE test.idTest = ?'
   conn.query(sql, [_idTest], callback)
 }
 
 // Devolver el nombre de usuario de un test y el nombre del test dado el idTest
 export const getUserTest = function (_idTest: number, callback: callback) {
   const sql = 'SELECT test.idTest, test.name, usuario.username \
-                FROM test inner join usuario on test.userEmail = usuario.email \
+                FROM test inner join usuario on test.idUser = usuario.idUser \
                 WHERE test.idTest = ?'
   conn.query(sql, [_idTest], callback)
 }

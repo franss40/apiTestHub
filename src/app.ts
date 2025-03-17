@@ -8,6 +8,7 @@ import routerTest from '@src/routes/test'
 import routerUser from '@src/routes/user'
 import routerAsk from '@src/routes/ask'
 import { errorHandler } from '@src/middleware/errorHandler'
+import routerAdmin from './routes/admin'
 
 const app = express()
 
@@ -26,6 +27,7 @@ app.use(express.json())
 app.use('/api/test', routerTest)
 app.use('/api/ask', routerAsk)
 app.use('/api/user', routerUser)
+app.use('/api/admin', routerAdmin)
 
 app.use(unknownEndPoint)
 app.use(errorHandler)

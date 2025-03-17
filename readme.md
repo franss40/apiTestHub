@@ -110,9 +110,12 @@ La API está compuesta por las siguientes rutas:
       description: string;
       category: string;
       date: date;
-      userEmail: string;
+      idUser: string;
       username: string;
     }
+
+    `GET /api/admin/:idUser`
+    Esta ruta es igual que la anterior pero sólo para administradores. Devuelve todos los test creados por un usuario determinado.
 
 2. `GET /api/test/:idTest`
     Esto es una ruta pública. Devuelve un test específico. Si no existe el test, devuelve un array vacío.
@@ -124,7 +127,7 @@ La API está compuesta por las siguientes rutas:
       description: string;
       category: string;
       date: date;
-      userEmail: string;
+      idUser: string;
       username: string;
     }
 

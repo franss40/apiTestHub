@@ -4,12 +4,15 @@
 GET http://localhost:3001/api/test
 
 ### Recuperar un determinado test
-GET http://localhost:3001/api/test/15
+GET http://localhost:3001/api/test/19
 
 ### Caso de uso II
 
+### Recuperar todos los tests creados por un usuario
+GET http://localhost:3001/api/admin/4
+
 ### Devolver las preguntas de un determinado test junto con el nombre de usuario y el nombre del test
-GET http://localhost:3001/api/ask/6
+GET http://localhost:3001/api/ask/19
 
 ### Si el test no existe devuelve un array vacío
 GET http://localhost:3001/api/ask/1
