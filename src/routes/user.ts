@@ -61,7 +61,7 @@ routerUser.post('/login', limiterLogin, async (_req, res) => {
       config.secret,
       { algorithm: 'HS256', expiresIn: '1h' }
     )
-    return res.json({ token })
+    return res.json({ idUser: user[0].idUser, username: user[0].username, token })
   })
 })
 

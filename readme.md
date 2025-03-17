@@ -175,7 +175,7 @@ La API está compuesta por las siguientes rutas:
       password: string
     }
 
-    Si falta algun dato o la contraseña no está validada correctamente devuelve un error 400. Si es satisfactoria la petición responde con un estado de 201 con el token de autenticación.
+    Si falta algun dato o la contraseña no está validada correctamente devuelve un error 400. Si es satisfactoria la petición responde con un estado de 201 con el token de autenticación, id de usuario y username.
    
 8. `GET /api/ask/:idTest`
     Ruta pública que permite obtener las preguntas de un test dado. La respuesta sigue el siguiente formato:
